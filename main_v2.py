@@ -22,7 +22,7 @@ def get_weather_report(area):
     # Extract relevant data
     current_conditions = weather_data['currentConditions']
     current_date = weather_data['days'][0]['datetime']
-    latest_hour = weather_data['days'][0]['hours'][1]  # Latest hour's update
+    latest_hour = weather_data['days'][0]['hours'][0]  # Latest hour's update
     resolved_address = weather_data['resolvedAddress']
     address = weather_data['address']
     windspeed = latest_hour['windspeed']
