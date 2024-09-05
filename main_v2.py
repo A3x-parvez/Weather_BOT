@@ -1,7 +1,9 @@
 import requests
-import telebot
+import telebot 
+import datetime
 import sys
 from requriment import BOT_Token
+
 
 # Telegram bot token
 # BOT_Token=BOT_Token
@@ -10,19 +12,31 @@ from requriment import BOT_Token
 TELEGRAM_BOT_TOKEN = BOT_Token
 bot = telebot.TeleBot(BOT_Token)
 
+#Current time 
+def get_current_hour():
+    # Get the current time
+    current_time = datetime.datetime.now()
+    # Extract the current hour (0-23)
+    current_hour = current_time.hour
+    return current_hour
+
 #weather report getting function.
-def get_weather_report(area):
+def get_weather_report(area,hour):
     response = requests.request("GET", f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{area}?unitGroup=metric&include=current%2Cdays%2Chours&key=G2WWHTWX984WANXA4E7753X82&contentType=json")
     if response.status_code!=200:
         print('Unexpected Status code: ', response.status_code)
+        report =(
+            f"Area not found or something went wrong.please try again."
+        )
         sys.exit()
-    
+        
+    #get data into jsonfile
     jsonData = response.json()
     weather_data = jsonData
     # Extract relevant data
     current_conditions = weather_data['currentConditions']
     current_date = weather_data['days'][0]['datetime']
-    latest_hour = weather_data['days'][0]['hours'][0]  # Latest hour's update
+    latest_hour = weather_data['days'][0]['hours'][hour]  # Latest hour's update
     resolved_address = weather_data['resolvedAddress']
     address = weather_data['address']
     windspeed = latest_hour['windspeed']
@@ -80,9 +94,13 @@ def start(message):
 # Function to handle incoming messages (city names)
 @bot.message_handler()
 def handle_message(message):
-        print("Area name recived.")
+        print("Fetch current time.")
+        hour = get_current_hour()
+        print("Access latest update.")
+        #recived area name.
         city = message.text
-        weather_report =get_weather_report(city)
+        print("Area name recived.")
+        weather_report =get_weather_report(area=city,hour=hour)
         print("Weather information fetched.")
         bot.reply_to(message,weather_report)
         print("Responce send sucessfully.")
