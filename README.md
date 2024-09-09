@@ -34,9 +34,10 @@ pip install telebot
 ```bash
 pip install requests
 ```
-#### Obtain your Telegram bot token by creating a bot using BotFather on Telegram. Add the token in a file named `main_v2.py` as follows:
+#### Obtain your Telegram bot token by creating a bot using BotFather on Telegram and create an Weather API key from Visual Crossing . Add the token and API key in a file named `main_v2.py` as follows:
 ```bash
 BOT_Token = "YOUR_TELEGRAM_BOT_TOKEN"
+API = "Visual_Crossing_API"
 ```
 #### Obtain an API key from Visual Crossing and replace it in the `get_weather_report()` function of the `main_v2.py` file.
 
