@@ -2,13 +2,16 @@ import requests
 import telebot 
 import datetime
 import sys
-from requriment import BOT_Token
+from requriment import BOT_Token,Visual_API
 
 
 # Telegram bot token
 # BOT_Token=BOT_Token
 # "7499920919:AAFjYVdvz1qdCc8Ox3aN8vf0e0bXBE2hDfU"
 
+#  f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{area}?unitGroup=metric&include=current%2Cdays%2Chours&key=G2WWHTWX984WANXA4E7753X82&contentType=json"
+
+API=Visual_API
 TELEGRAM_BOT_TOKEN = BOT_Token
 bot = telebot.TeleBot(BOT_Token)
 
@@ -22,7 +25,7 @@ def get_current_hour():
 
 #weather report getting function.
 def get_weather_report(area,hour):
-    response = requests.request("GET", f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{area}?unitGroup=metric&include=current%2Cdays%2Chours&key=G2WWHTWX984WANXA4E7753X82&contentType=json")
+    response = requests.request("GET", f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{area}?unitGroup=metric&include=current%2Cdays%2Chours&key={API}&contentType=json")
     if response.status_code!=200:
         print('Unexpected Status code: ', response.status_code)
         report =(
