@@ -1,6 +1,6 @@
 import requests
 import telebot
-from requriment import *
+from keys import *
 
 TELEGRAM_BOT_TOKEN = BOT_Token
 WEATHER_API_KEY = API_Key

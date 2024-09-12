@@ -2,7 +2,7 @@ import requests
 import telebot 
 import datetime
 import sys
-from requriment import BOT_Token,Visual_API
+from keys import BOT_Token,Visual_API
 
 
 # Telegram bot token
