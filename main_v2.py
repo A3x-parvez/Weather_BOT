@@ -5,12 +5,6 @@ import sys
 from keys import BOT_Token,Visual_API
 
 
-# Telegram bot token
-# BOT_Token=BOT_Token
-# "7499920919:AAFjYVdvz1qdCc8Ox3aN8vf0e0bXBE2hDfU"
-
-#  f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{area}?unitGroup=metric&include=current%2Cdays%2Chours&key=G2WWHTWX984WANXA4E7753X82&contentType=json"
-
 API=Visual_API
 TELEGRAM_BOT_TOKEN = BOT_Token
 bot = telebot.TeleBot(BOT_Token)
